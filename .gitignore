@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+*.egg-info/
+
+# Pipeline state and output
+seo-pipeline/pipeline_state.json
+seo-pipeline/output/
+seo-pipeline/pipeline.log
+
+# macOS
+.DS_Store
+
+# Secrets (never commit keys)
+.env
+*.env

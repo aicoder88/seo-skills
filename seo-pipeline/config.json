@@ -1,0 +1,16 @@
+{
+  "seed_keywords": [
+    "your main keyword here",
+    "another topic to target",
+    "third keyword seed"
+  ],
+  "site_url": "https://yoursite.com",
+  "site_name": "Your Site Name",
+  "site_type": "blog",
+  "output_dir": "/Users/macmini/dev/SEO/seo-pipeline/output",
+  "interval_hours": 4,
+  "articles_per_run": 3,
+  "target_word_count": 1500,
+  "model": "claude-opus-4-6",
+  "min_score": 4
+}
