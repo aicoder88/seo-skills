@@ -16,3 +16,6 @@ seo-pipeline/pipeline.log
 # Secrets (never commit keys)
 .env
 *.env
+
+# nested standalone project (own repo)
+seo-sweep/
