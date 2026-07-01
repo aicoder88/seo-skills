@@ -31,11 +31,10 @@ import json
 import os
 import re
 import ssl
-import time
 import urllib.request
 import urllib.parse
 import urllib.error
-from datetime import datetime
+from datetime import datetime, timezone
 
 # Use certifi for SSL if available (needed on macOS Python.org installs)
 try:
@@ -286,7 +285,7 @@ def cmd_psi(url):
         "command": "psi",
         "source": "Google PageSpeed Insights (free — 25k req/day)",
         "url": url,
-        "timestamp": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "timestamp": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "authenticated": bool(api_key),
         "mobile": results.get("mobile"),
         "desktop": results.get("desktop"),
@@ -559,7 +558,7 @@ def cmd_whois(domain):
                 "status": data.get("status", [])
             })
             return
-        except Exception as e:
+        except Exception:
             pass
 
     out({"command": "whois", "error": f"Both WHOIS sources failed (HTTP {status}/{status2})",
@@ -635,7 +634,6 @@ def _classify_intent_from_keyword(keyword):
     }
 
     best = max(scores, key=lambda k: scores[k])
-    total = sum(scores.values())
     confidence = "high" if scores[best] >= 4 else "medium" if scores[best] >= 2 else "low"
 
     return {

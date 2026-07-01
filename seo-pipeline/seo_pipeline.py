@@ -135,7 +135,7 @@ def run_free_seo(command, arg, env=None):
         )
         if result.returncode == 0 and result.stdout.strip():
             return json.loads(result.stdout)
-    except (subprocess.TimeoutExpired, json.JSONDecodeError, Exception) as e:
+    except Exception as e:
         log(f"free_seo {command} '{arg}': {e}", "WARN")
     return None
 
@@ -550,12 +550,12 @@ def print_status(cfg, state):
     scored.sort(key=lambda x: -x[1])
 
     if scored:
-        print(f"\n  Top queued opportunities (score/10):")
+        print("\n  Top queued opportunities (score/10):")
         for kw, sc, intent, trend in scored[:10]:
             print(f"    [{sc:2d}] {kw:<40} intent={intent} trend={trend}")
 
     if state["written_articles"]:
-        print(f"\n  Recent articles:")
+        print("\n  Recent articles:")
         recent = sorted(state["written_articles"].items(),
                         key=lambda x: x[1].get("created_at", ""),
                         reverse=True)[:5]
